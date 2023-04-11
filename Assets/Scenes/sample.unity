@@ -503,6 +503,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 396457892049698912, guid: 4ddd949e5f5d5d449ba779956d4cf8b6, type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5485459738077282194, guid: 4ddd949e5f5d5d449ba779956d4cf8b6, type: 3}
       propertyPath: m_Name
       value: '[PlayerController]'
