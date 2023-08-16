@@ -1499,9 +1499,18 @@
             "id": "999bd85e-261e-48b4-a25e-3ec2845fb0d0",
             "actions": [
                 {
-                    "name": "Teleportation",
+                    "name": "ButtonA",
                     "type": "Button",
                     "id": "c2165b71-0afe-4548-b6a6-8eb574f1dc6c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ButtonB",
+                    "type": "Button",
+                    "id": "7644973d-ed95-4f9c-887b-ce6296ace8aa",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1516,7 +1525,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Teleportation",
+                    "action": "ButtonA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "421821e8-285c-475d-a7a9-38f7144184f0",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ButtonB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

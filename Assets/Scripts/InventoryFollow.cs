@@ -7,33 +7,30 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class InventoryFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [SerializeField] private Transform _camera;
+    [SerializeField] private CharacterController charController;
     [SerializeField] private Vector3 offset;
 
     void FixedUpdate()
     {
-        transform.position = target.position
+
+        Vector3 center = new Vector3(charController.center.z, 0.3f, -charController.center.x);
+        transform.position = target.position + center
+            + Vector3.ProjectOnPlane(_camera.right, Vector3.up).normalized * offset.x
+            + Vector3.up * offset.y
+            + Vector3.ProjectOnPlane(_camera.right, Vector3.up).normalized * offset.z;
+
+        //transform.position = charController.center + offset;
+/*        transform.position = target.position
             + Vector3.up * offset.y
             + Vector3.ProjectOnPlane(target.right, Vector3.up).normalized * offset.x
-            + Vector3.ProjectOnPlane(target.forward, Vector3.up).normalized * offset.z;
+            + Vector3.ProjectOnPlane(target.forward, Vector3.up).normalized * offset.z;*/
+
+/*        transform.position = new Vector3(
+            target.position.x + Vector3.ProjectOnPlane(target.right, Vector3.up).normalized.x * offset.x,
+            offset.y,
+            target.position.z + Vector3.ProjectOnPlane(target.forward, Vector3.up).normalized.z * offset.z);*/
 
         transform.eulerAngles = new Vector3(0,target.eulerAngles.y,0);
-    }
-
-    public InputActionReference buttonAInput;
-    [SerializeField] private GameObject obj;
-    private bool etat = false;
-
-    void Update()
-    {
-        if (buttonAInput.action.triggered && etat == false)
-        {
-            etat = !etat;
-            offset.y -= 100;
-        }
-        else if (buttonAInput.action.triggered && etat == true)
-        {
-            etat = !etat;
-            offset.y += 100;
-        }
     }
 }

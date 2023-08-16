@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class WatchTimer : MonoBehaviour
 {
-    private float time = 0;
     public TextMeshProUGUI _textMeshPro;
 
     private void Start()
