@@ -51678,6 +51678,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5342413185954189221, guid: 0f7c9f2e1e6019e4e910b7083020a11e, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7763837286121699695, guid: 0f7c9f2e1e6019e4e910b7083020a11e, type: 3}
       propertyPath: m_Name
       value: Essentials

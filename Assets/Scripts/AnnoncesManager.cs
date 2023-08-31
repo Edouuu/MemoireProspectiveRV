@@ -9,10 +9,12 @@ public class AnnoncesManager : MonoBehaviour
     private struct Annonce
     {
         public float time_minutes;
+        public float time_secondes;
         public AudioClip audioClipAnnonce;
     }
 
     [SerializeField] private Annonce[] annonces;
+    [SerializeField] private AudioClip jingle;
     private AudioSource audioSource;
 
     private void Awake()
@@ -30,7 +32,10 @@ public class AnnoncesManager : MonoBehaviour
 
     private IEnumerator StartAnnonce(Annonce annonce)
     {
-        yield return new WaitForSeconds(annonce.time_minutes * 60);
+        yield return new WaitForSeconds(annonce.time_minutes * 60 + annonce.time_secondes);
+        audioSource.PlayOneShot(jingle);
+        yield return new WaitForSeconds(jingle.length);
         audioSource.PlayOneShot(annonce.audioClipAnnonce);
+        
     }
 }

@@ -46,6 +46,9 @@ public class FirstNPCInteractable : MonoBehaviour, IInteractable {
     private bool intention0 = false;
     private bool intention1 = false;
     private bool intention2 = false;
+    private bool intention3 = false;
+    private bool intention4 = false;
+    private bool intention5 = false;
 
     private int numberFound = 0;
     private bool stopCoroutine = false;
@@ -63,10 +66,15 @@ public class FirstNPCInteractable : MonoBehaviour, IInteractable {
     {
         if (source != null)
         {
+            textCanva.text = "";
+            numberFound = 0;
             stopCoroutine = false;
             intention0 = false;
             intention1 = false;
             intention2 = false;
+            intention3 = false;
+            intention4 = false;
+            intention5 = false;
             source.PlayOneShot(audioEnter); // Start playing the audio
             StartCoroutine(TalkAnimation());
             yield return new WaitForSeconds(audioEnter.length); // Wait for the audio clip length
@@ -74,6 +82,7 @@ public class FirstNPCInteractable : MonoBehaviour, IInteractable {
             source.PlayOneShot(audioMicActive);
             appVoiceExperience.Activate();
             yield return new WaitUntil(() => recognition);
+            
             recognition = false;
             WordRecognition(sentenceRecognized);
         }
@@ -103,25 +112,48 @@ public class FirstNPCInteractable : MonoBehaviour, IInteractable {
         {
             intention0 = true;
             numberFound += 1;
+            textCanva.text = "Tâches : " + numberFound.ToString() + "/6";
         }
         if (!intention1 && interaction.wordToFind == interactionList[1].wordToFind)
         {
             intention1 = true;
             numberFound += 1;
+            textCanva.text = "Tâches : " + numberFound.ToString() + "/6";
         }
         if (!intention2 && interaction.wordToFind == interactionList[2].wordToFind)
         {
             intention2 = true;
             numberFound += 1;
+            textCanva.text = "Tâches : " + numberFound.ToString() + "/6";
+        }
+        if (!intention3 && interaction.wordToFind == interactionList[3].wordToFind)
+        {
+            intention3 = true;
+            numberFound += 1;
+            textCanva.text = "Tâches : " + numberFound.ToString() + "/6";
+        }
+        if (!intention4 && interaction.wordToFind == interactionList[4].wordToFind)
+        {
+            intention4 = true;
+            numberFound += 1;
+            textCanva.text = "Tâches : " + numberFound.ToString() + "/6";
+        }
+        if (!intention5 && interaction.wordToFind == interactionList[5].wordToFind)
+        {
+            intention5 = true;
+            numberFound += 1;
+            textCanva.text = "Tâches : " + numberFound.ToString()+ "/6";
         }
 
         // Cas où tout a été dit
-        if (intention0 && intention1 && intention2)
+        if (intention0 && intention1 && intention2 && intention4 && intention5 && intention3)
         {
             source.PlayOneShot(audioReussiteDirectionCentre);
             StartCoroutine(TalkAnimation());
             textCanva.text = null;
             objectToActive.SetActive(true);
+            textCanva.text = "";
+            numberFound = 0;
             playerInteract.NotInteractionState();
         }
         // Cas où il reste des intentions à donner
@@ -133,7 +165,6 @@ public class FirstNPCInteractable : MonoBehaviour, IInteractable {
             if (stopCoroutine) { yield break; }
             source.PlayOneShot(audioMicActive);
             appVoiceExperience.Activate();
-            //yield return new WaitForSeconds(5.0f);
             yield return new WaitUntil(() => recognition);
             WordRecognition(sentenceRecognized);
             recognition = false;
@@ -157,7 +188,8 @@ public class FirstNPCInteractable : MonoBehaviour, IInteractable {
     {
         source.PlayOneShot(audioExit); // Start playing the audio
         StartCoroutine(TalkAnimation());
-        textCanva.text = null;
+        textCanva.text = "";
+        numberFound = 0;
         yield return new WaitForSeconds(audioExit.length); // Wait for the audio clip length
         playerInteract.NotInteractionState();
     }

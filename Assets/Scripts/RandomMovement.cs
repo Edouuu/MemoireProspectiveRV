@@ -11,6 +11,8 @@ public class RandomMovement : MonoBehaviour //don't forget to change the script 
     public float range; //radius of sphere
     private float time = 0.0f;
 
+    private Transform positionInit;
+
     public Transform centrePoint; //centre of the area the agent wants to move around in
     //instead of centrePoint you can set it as the transform of the agent if you don't care about a specific area
 
@@ -18,6 +20,7 @@ public class RandomMovement : MonoBehaviour //don't forget to change the script 
     {
         agent = GetComponent<NavMeshAgent>();
         //animator = GetComponentInChildren<Animator>();
+        positionInit = transform;
     }
 
 
@@ -41,6 +44,7 @@ public class RandomMovement : MonoBehaviour //don't forget to change the script 
         }
         else
         {
+            this.transform.position = new Vector3(transform.position.x, positionInit.position.y, transform.position.z);
             animator.SetBool("Walk", true);
         }
 

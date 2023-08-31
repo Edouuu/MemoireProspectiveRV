@@ -6,7 +6,7 @@ public class TPBackJoystick : MonoBehaviour
 {
     [SerializeField] private InputActionReference inputJoystick;
     [SerializeField] private GameObject _camera;
-    [SerializeField] [Range(0.1f, 3)] private float distanceTeleportation = 0.5f;
+    [SerializeField] [Range(0, 3)] private float distanceTeleportation = 0.5f;
     [SerializeField] private bool continuous = true;
     private bool possible = true;
 
@@ -36,7 +36,7 @@ public class TPBackJoystick : MonoBehaviour
                 Vector3 cameraLook = Camera.main.transform.forward;
                 cameraLook.y = 0;
                 cameraLook = cameraLook.normalized;
-                transform.position -= cameraLook * 0.02f;
+                transform.position -= cameraLook * distanceTeleportation;
             }
         }
     }

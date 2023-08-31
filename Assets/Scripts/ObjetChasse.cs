@@ -8,6 +8,7 @@ public class ObjetChasse : MonoBehaviour
     [SerializeField] GameObject objetRed;
     [SerializeField] GameObject objetGreen;
     [SerializeField] AudioClip soundEffect;
+    [SerializeField] JeuChasse jeu;
 
     private AudioSource source;
 
@@ -19,6 +20,7 @@ public class ObjetChasse : MonoBehaviour
     {
         if (other.name == "Phone" && objetGreen.activeSelf == false)
         {
+            jeu.AjoutPoint();
             source.PlayOneShot(soundEffect);
             objetGreen.SetActive(true);
             objetRed.SetActive(false);

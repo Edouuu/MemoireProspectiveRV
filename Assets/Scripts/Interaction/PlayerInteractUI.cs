@@ -19,8 +19,11 @@ public class PlayerInteractUI : MonoBehaviour {
     private void Show(IInteractable interactable) {
         containerGameObject.SetActive(true);
         interactTextMeshProUGUI.text = interactable.GetInteractText();
-        containerGameObject.transform.position = interactable.GetTransform().position + Vector3.up * 2.5f;
-        containerGameObject.transform.rotation = interactable.GetTransform().rotation * Quaternion.Euler(0, 180, 0);
+        if (interactable.GetInteractText() != "PHONE")
+        {
+            containerGameObject.transform.position = interactable.GetTransform().position + Vector3.up * 2.5f;
+            containerGameObject.transform.rotation = interactable.GetTransform().rotation * Quaternion.Euler(0, 180, 0);
+        }
     }
 
 

@@ -22,10 +22,7 @@ public class VoiceExperience : MonoBehaviour
     [SerializeField] private TextMeshProUGUI partialTranscriptText;
 
     [SerializeField] private IInteractable interactable;
-    
-
-
-    private bool appVoiceActive;
+   
 
     private void Awake()
     {
@@ -36,9 +33,11 @@ public class VoiceExperience : MonoBehaviour
             //fullTranscriptText.text = "Full Transcription : " + transcription;
             if (interactable != null)
             {
+                Debug.Log("Transcription reconnue : " + transcription);
                 interactable.SetRecognizedSentence(transcription);
                 interactable.SetRecognitionTrue();
-                csvWriter.AddOneLine(transcription);
+                csvWriter.AddOneLine(transcription, interactable);
+                appVoiceExperience.Deactivate();
             }
         });        
         
@@ -49,13 +48,11 @@ public class VoiceExperience : MonoBehaviour
 
         appVoiceExperience.VoiceEvents.OnRequestCreated.AddListener((request) =>
         {
-            appVoiceActive = true;
             Debug.Log("OnRequestCreated Active");
         });
 
         appVoiceExperience.VoiceEvents.OnRequestCompleted.AddListener(() =>
         {
-            appVoiceActive = false;
             Debug.Log("OnRequestCompleted Active");
         });
     }
